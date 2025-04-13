@@ -1,9 +1,10 @@
 import {useEffect, useState} from "react";
+import PageFooter from "../PageFooter";
 
-const ContentsChapter = ({ pages, chapterNum, subChapterNum, changePage}) => {
-    const [pageNum, setPageName] = useState(pages);
+const ContentsChapter = ({ pageNum, chapterNum, subChapterNum, changePage}) => {
+    const [pageNumSelf, setPageNameSelf] = useState(pageNum);
     useEffect(() => {
-        changePage(pages++);
+        changePage(pageNum++);
     }, []);
 
     return (
@@ -120,13 +121,9 @@ const ContentsChapter = ({ pages, chapterNum, subChapterNum, changePage}) => {
                     </div>
                 </a>*/}
             </div>
-            <div className="footer-1">
-                <div className="footer-block">
-                    <p className="page-number">{pageNum < 10 ? '0' + pageNum : pageNum}</p>
-                    <p className="site">www.arstel.com</p>
-                </div>
-                <img className="footer-img" src="../../media/ARSTEL_small.png" alt="arstel_logo"/>
-            </div>
+            <PageFooter
+                pageNumSelf={pageNumSelf}
+            />
         </div>
     );
 }

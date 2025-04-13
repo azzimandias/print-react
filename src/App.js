@@ -25,31 +25,35 @@ function App() {
     const [conclusionsInfo, setConclusionsInfo] = useState({});
 
     useEffect(() => {
-        getInfoFromServer().then();
+        getInfoFromServer();
     }, []);
 
-    const getInfoFromServer = async () => {
-        //const response = await fetch(`http://zend2.arstel.su/kpischet/infoToPrint?bid_id=${kpId}`)
-        await fetch(`/test.json`)
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                setTitleInfo(res.titleInfo);
-                setSpecialsInfo(res.specialsInfo);
-                setChoiceInfo(res.choiceInfo);
-                setSchemeInfo(res.schemeInfo);
-                setPlacingInfo(res.placingInfo);
-                setSchemesInfo(res.schemesInfo);
-                setPlacingsInfo(res.placingsInfo);
-                setRecommendationInfo(res.recomendationInfo);
-                setAcousticInfo(res.acousticInfo);
-                setReverbInfo(res.reverbInfo);
-                setDirectSplInfo(res.directSplInfo);
-                setTotalSplInfo(res.totalSplInfo);
-                setStiInfo(res.stiInfo);
-                setAlconsInfo(res.alconsInfo);
-                setConclusionsInfo(res.conclusionsInfo);
-            });
+    const getInfoFromServer = () => {
+        try {
+            //const response = await fetch(`http://zend2.arstel.su/kpischet/infoToPrint?bid_id=${kpId}`)
+            fetch(`/test.json`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    setTitleInfo(res.titleInfo);
+                    setSpecialsInfo(res.specialsInfo);
+                    setChoiceInfo(res.choiceInfo);
+                    setSchemeInfo(res.schemeInfo);
+                    setPlacingInfo(res.placingInfo);
+                    setSchemesInfo(res.schemesInfo);
+                    setPlacingsInfo(res.placingsInfo);
+                    setRecommendationInfo(res.recomendationInfo);
+                    setAcousticInfo(res.acousticInfo);
+                    setReverbInfo(res.reverbInfo);
+                    setDirectSplInfo(res.directSplInfo);
+                    setTotalSplInfo(res.totalSplInfo);
+                    setStiInfo(res.stiInfo);
+                    setAlconsInfo(res.alconsInfo);
+                    setConclusionsInfo(res.conclusionsInfo);
+                });
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     const startPrint = () => {
@@ -67,6 +71,7 @@ function App() {
               stopPrint={stopPrint}
           />
           <Print
+              kpId={kpId}
               type={type}
               isPrint={isPrint}
               info={
