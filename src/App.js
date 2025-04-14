@@ -23,6 +23,7 @@ function App() {
     const [stiInfo, setStiInfo] = useState({});
     const [alconsInfo, setAlconsInfo] = useState({});
     const [conclusionsInfo, setConclusionsInfo] = useState({});
+    const [characteristicInfo, setCharacteristicInfo] = useState({});
 
     useEffect(() => {
         getInfoFromServer();
@@ -50,6 +51,7 @@ function App() {
                     setStiInfo(res.stiInfo);
                     setAlconsInfo(res.alconsInfo);
                     setConclusionsInfo(res.conclusionsInfo);
+                    setCharacteristicInfo(res.characteristicInfo);
                 });
         } catch (e) {
             console.log(e);
@@ -90,7 +92,8 @@ function App() {
                       totalSplInfo,
                       stiInfo,
                       alconsInfo,
-                      conclusionsInfo
+                      conclusionsInfo,
+                      characteristicInfo
                   }
               }
           />

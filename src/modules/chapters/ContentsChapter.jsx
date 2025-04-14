@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import PageFooter from "../PageFooter";
 
-const ContentsChapter = ({ pageNum, chapterNum, subChapterNum, changePage}) => {
+const ContentsChapter = ({ pages, pageNum, chapterNum, subChapterNum, changePage}) => {
     const [pageNumSelf, setPageNameSelf] = useState(pageNum);
     useEffect(() => {
         changePage(pageNum++);
@@ -95,7 +95,7 @@ const ContentsChapter = ({ pageNum, chapterNum, subChapterNum, changePage}) => {
                     <div className="line">
                         <p className="line-name"><span className="line-num">{chapterNum}</span>. Спецификация оборудования</p>
                         <div className="dotted"></div>
-                        <p className="line-page">03</p>
+                        <p className="line-page">{pages.spec < 10 ? '0' + pages.spec : pages.spec}</p>
                     </div>
                 </a>
                 {/*<a id="recommendationsChapterLink" href="#recommendations-1">
@@ -110,7 +110,7 @@ const ContentsChapter = ({ pageNum, chapterNum, subChapterNum, changePage}) => {
                     <div className="line">
                         <p className="sub-line-name"><span className="line-num">{subChapterNum}</span> Характеристики системы</p>
                         <div className="dotted"></div>
-                        <p className="line-page">04</p>
+                        <p className="line-page">{pages.characteristics < 10 ? '0' + pages.characteristics : pages.characteristics}</p>
                     </div>
                 </a>
                 {/*<a id="appendixLink" href="#appendix">

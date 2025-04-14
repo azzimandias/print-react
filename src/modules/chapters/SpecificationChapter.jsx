@@ -9,20 +9,9 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
         fetchModels();
     }, []);
 
-    const fetchModels = () => {
-        try {
-            fetch(`/test2.json`)
-                .then(res => res.json())
-                .then(res => {
-                    console.log(res);
-                    if (res && res.length > 0) {
-                        setModels(res);
-                    }
-                });
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    useEffect(() => {
+        changePage(pageNumSelf + calculateBlocksCount());
+    }, [models]);
 
     // Функция для расчета количества необходимых блоков specification
     const calculateBlocksCount = () => {
@@ -46,6 +35,19 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
 
     const blocksCount = calculateBlocksCount();
 
+    const fetchModels = () => {
+        try {
+            fetch(`/test2.json`)
+                .then(res => res.json())
+                .then(res => {
+                    console.log(res);
+                    setModels(res);
+                });
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     // Рассчитываем общую сумму
     const totalSum = models.reduce((sum, model) => sum + (+model.quantity * +model.price_0), 0);
 
@@ -57,7 +59,7 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
                         {blockIndex === 0 && (
                             <div className="specification-header">
                                 <div className="first-number">{chapterNum}</div>
-                                <div className="first-header-name">Спецификафия<br/>оборудования</div>
+                                <div className="first-header-name">Спецификация<br/>оборудования</div>
                             </div>
                         )}
 
@@ -72,24 +74,31 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
                             <div className="specification-header-cell"><p>Фото<br/>оборудования</p></div>
                         </div>
 
-                        {getModelsForBlock(blockIndex).map((model, index) => (
-                            <div key={index} className="specification-line">
-                                <div className="specification-line-cell left"><p>{index + 1}</p></div>
-                                <div className="specification-line-cell">
-                                    <div className="naming-wrapper">
-                                        <p className="name">{model.brand}, {model.name}</p>
-                                        <p className="description">{model.short_note}</p>
+                        {getModelsForBlock(blockIndex).map((model, index) => {
+                            // Вычисляем глобальный индекс модели в массиве models
+                            const globalIndex = blockIndex === 0
+                                ? index
+                                : 3 + (blockIndex - 1) * 4 + index;
+
+                            return (
+                                <div key={index} className="specification-line">
+                                    <div className="specification-line-cell left"><p>{globalIndex + 1}</p></div>
+                                    <div className="specification-line-cell">
+                                        <div className="naming-wrapper">
+                                            <p className="name">{model.brand}, {model.name}</p>
+                                            <p className="description">{model.short_note}</p>
+                                        </div>
+                                    </div>
+                                    <div className="specification-line-cell"><p>{model.quantity}</p></div>
+                                    <div className="specification-line-cell"><p>{model.price_0}</p></div>
+                                    <div className="specification-line-cell"><p>{+model.quantity * +model.price_0}</p></div>
+                                    <div className="specification-line-cell"><p>{model.availability}+</p></div>
+                                    <div className="specification-line-cell">
+                                        <img src={model.path} alt={model.name}/>
                                     </div>
                                 </div>
-                                <div className="specification-line-cell"><p>{model.quantity}</p></div>
-                                <div className="specification-line-cell"><p>{model.price_0}</p></div>
-                                <div className="specification-line-cell"><p>{+model.quantity * +model.price_0}</p></div>
-                                <div className="specification-line-cell"><p>{model.availability}+</p></div>
-                                <div className="specification-line-cell">
-                                    <img src={model.path} alt={model.name}/>
-                                </div>
-                            </div>
-                        ))}
+                            );
+                        })}
 
                         {blockIndex === blocksCount - 1 && (
                             <>

@@ -237,5 +237,13 @@
         "pdf_conclusions_recommendations_text": ""
       }
     ]
+  },
+  "characteristicInfo": {
+    "maxPowerConsumption": 280,
+    "totalOutputPower": 5760,
+    "totalPowerOfTheSpeakers": 2358,
+    "overallHeight": 32,
+    "grossWeight": 543.9,
+    "volumeIncludingPackaging": 3.228
   }
 }

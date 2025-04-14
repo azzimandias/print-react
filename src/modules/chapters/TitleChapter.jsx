@@ -11,15 +11,15 @@ const TitleChapter = ({ type, titleInfo }) => {
     return (
         <div id="start" className="body-container start">
             <div className="start-header">
-                <img className="start-arstel" src="../../media/ARSTEL.png" alt="arstel"/>
+                <img className="start-arstel" src="/media/ARSTEL.png" alt="arstel"/>
                 {type === 2 && (<div className="right-block-prof"
                                      style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-end'}}>
                     <div className="interm-affa">
                         <img style={{marginRight: '10px', marginTop: '2mm', height: '10mm'}}
-                             src="../../media/Affa_logo.png" alt="affa"/>
+                             src="/media/Affa_logo.png" alt="affa"/>
                         <img className="start-interm"
                              style={{height: '8mm', marginTop: '0', marginBottom: '1.7mm'}}
-                             src="../../media/Inter-M.png" alt="inter-m"/>
+                             src="/media/Inter-M.png" alt="inter-m"/>
                     </div>
                     <div style={{
                         textTransform: 'uppercase',
@@ -32,7 +32,7 @@ const TitleChapter = ({ type, titleInfo }) => {
                     </div>
                 </div>)}
                 {type === 1 && (<div className="right-block-trans">
-                    <img className="start-interm" src="../../media/Inter-M.png" alt="inter-m"/>
+                    <img className="start-interm" src="/media/Inter-M.png" alt="inter-m"/>
                 </div>)}
             </div>
             <div className="center">
@@ -64,7 +64,7 @@ const TitleChapter = ({ type, titleInfo }) => {
                     </div>
                 </div>
                 <div className="start-photo-block">
-                    <img className="start-photo" src="../../media/pmu60n.png" alt="equipment"/>
+                    <img className="start-photo" src="/media/pmu60n.png" alt="equipment"/>
                 </div>
             </div>
         </div>

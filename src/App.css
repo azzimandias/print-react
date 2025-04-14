@@ -411,7 +411,7 @@ body {
   position: absolute;
   top: 1mm;
   left: 0;
-  background-image: url("media/KP_start_big.png");
+  background-image: url("../public/media/KP_start_big.png");
   background-size: 297mm 209mm;
   background-position: center;
   background-repeat: no-repeat;
@@ -554,6 +554,7 @@ body {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif !important;
   margin-bottom: 10mm;
+  text-align: left;
 }
 a { text-decoration: none; }
 .line {
@@ -828,6 +829,7 @@ a { text-decoration: none; }
   font-weight: 600;
   color: #ed7203;
   padding-left: 12mm;
+  text-align: left;
 }
 .sum {
   width: 32mm;
@@ -873,9 +875,10 @@ a { text-decoration: none; }
 }
 .characteristic-name {
   color: #ed7203;
-  font-size: 4mm;
+  font-size: 4.2mm;
   font-weight: 500;
   margin-bottom: 5mm;
+  text-align: left;
 }
 .characteristic-description {
   height: 5mm;
@@ -980,7 +983,7 @@ a { text-decoration: none; }
 .appendix-left {
   width: 25mm;
   height: 210mm;
-  background-image: url("media/appendix.png");
+  background-image: url("../public/media/appendix.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100px;
