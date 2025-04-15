@@ -1,8 +1,12 @@
 import PageFooter from "../PageFooter";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-const CharacteristicsChapter = ({ pageNum, subChapterNum, characteristicInfo }) => {
-    const [pageNumSelf, setPageNameSelf] = useState(pageNum);
+const CharacteristicsChapter = ({ startPage, subChapterNum, characteristicInfo, name, onRender }) => {
+    const [pageNumSelf, setPageNameSelf] = useState(startPage);
+    useEffect(() => {
+        onRender(startPage++, name);
+        console.log(111)
+    }, []);
     return (
         <div className="body-container specification">
             <div className="specification-wrapper">

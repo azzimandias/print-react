@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import PageFooter from "../PageFooter";
 
-const ContentsChapter = ({ pages, pageNum, chapterNum, subChapterNum, changePage}) => {
-    const [pageNumSelf, setPageNameSelf] = useState(pageNum);
+const ContentsChapter = ({ startPage, name, chapterNum, subChapterNum, chaptersRendered, onRender}) => {
+    const [pageNumSelf, setPageNameSelf] = useState(startPage);
     useEffect(() => {
-        changePage(pageNum++);
+        onRender(startPage++, name);
     }, []);
 
     return (
@@ -95,7 +95,7 @@ const ContentsChapter = ({ pages, pageNum, chapterNum, subChapterNum, changePage
                     <div className="line">
                         <p className="line-name"><span className="line-num">{chapterNum}</span>. Спецификация оборудования</p>
                         <div className="dotted"></div>
-                        <p className="line-page">{pages.spec < 10 ? '0' + pages.spec : pages.spec}</p>
+                        <p className="line-page">{chaptersRendered.specification.startPage < 10 ? '0' + chaptersRendered.specification.startPage: chaptersRendered.specification.startPage}</p>
                     </div>
                 </a>
                 {/*<a id="recommendationsChapterLink" href="#recommendations-1">
@@ -110,7 +110,7 @@ const ContentsChapter = ({ pages, pageNum, chapterNum, subChapterNum, changePage
                     <div className="line">
                         <p className="sub-line-name"><span className="line-num">{subChapterNum}</span> Характеристики системы</p>
                         <div className="dotted"></div>
-                        <p className="line-page">{pages.characteristics < 10 ? '0' + pages.characteristics : pages.characteristics}</p>
+                        <p className="line-page">{chaptersRendered.characteristics.startPage < 10 ? '0' + chaptersRendered.characteristics.startPage: chaptersRendered.characteristics.startPage}</p>
                     </div>
                 </a>
                 {/*<a id="appendixLink" href="#appendix">

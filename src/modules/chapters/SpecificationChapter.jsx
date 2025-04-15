@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import PageFooter from "../PageFooter";
 
-const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
-    const [pageNumSelf, setPageNameSelf] = useState(pageNum);
+const SpecificationChapter = ({ kpId, startPage, name, chapterNum, currency, onRender }) => {
+    const [pageNumSelf, setPageNameSelf] = useState(startPage);
     const [models, setModels] = useState([]);
 
     useEffect(() => {
@@ -10,7 +10,9 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
     }, []);
 
     useEffect(() => {
-        changePage(pageNumSelf + calculateBlocksCount());
+        if (models.length > 0) {
+            onRender(pageNumSelf + calculateBlocksCount(), name);
+        }
     }, [models]);
 
     // Функция для расчета количества необходимых блоков specification
@@ -40,7 +42,6 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
             fetch(`/test2.json`)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res);
                     setModels(res);
                 });
         } catch (e) {
@@ -68,8 +69,8 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
                             <div className="specification-header-cell left pl4"><p className="left">Наименование,<br/>описание
                                 оборудования</p></div>
                             <div className="specification-header-cell"><p>Кол-во,<br/>шт</p></div>
-                            <div className="specification-header-cell"><p>Цена, $</p></div>
-                            <div className="specification-header-cell"><p>Сумма, $</p></div>
+                            <div className="specification-header-cell"><p>Цена, {currency.label}</p></div>
+                            <div className="specification-header-cell"><p>Сумма, {currency.label}</p></div>
                             <div className="specification-header-cell"><p>Наличие</p></div>
                             <div className="specification-header-cell"><p>Фото<br/>оборудования</p></div>
                         </div>
@@ -104,7 +105,7 @@ const SpecificationChapter = ({ kpId, pageNum, chapterNum, changePage }) => {
                             <>
                                 <div className="sum-line">
                                     <div className="sum-name">Итого:</div>
-                                    <div className="sum">{totalSum} $</div>
+                                    <div className="sum">{totalSum} {currency.label}</div>
                                 </div>
                                 <div className="sum-description-line">
                                     <div className="sum-text-left">По условиям договора поставка осуществляется при<br/>100%

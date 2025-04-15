@@ -4,41 +4,40 @@ import ContentsChapter from "./chapters/ContentsChapter";
 import SpecificationChapter from "./chapters/SpecificationChapter";
 import CharacteristicsChapter from "./chapters/CharacteristicsChapter";
 
-const Print = ({ kpId, isPrint, type, info }) => {
-    // Начальные значения
-    const [pages, setPages] = useState({
-        title: 1,       // Титульная страница всегда 1
-        contents: 2,    // Оглавление
-        spec: 3,       // Спецификация (начальное значение)
-        characteristics: 4 // Характеристики (начальное значение)
+const Print = ({ kpId, type, info, email, currency }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [chaptersRendered, setChaptersRendered] = useState({
+        title: {
+            startPage: 1,
+            rendered: false
+        },
+        contents: {
+            startPage: 0,
+            rendered: false
+        },
+        specification: {
+            startPage: 0,
+            rendered: false
+        },
+        characteristics: {
+            startPage: 0,
+            rendered: false
+        },
     });
 
-    // Обновляем номера страниц последовательно
-    useEffect(() => {
-        // После загрузки компонента вычисляем актуальные номера страниц
-        setPages(prev => ({
-            ...prev,
-            contents: 2,
-            spec: prev.contents + 1,
-            characteristics: prev.spec + 1
-        }));
-    }, []);
-
-    // Функция для обновления номера страницы конкретной главы
-    const updateChapterPage = (chapter, newPage) => {
-        setPages(prev => {
-            const updated = {...prev, [chapter]: newPage};
-
-            // Пересчитываем последующие страницы
-            if (chapter === 'contents') {
-                updated.spec = newPage + 1;
-                updated.characteristics = updated.spec + 1;
-            } else if (chapter === 'spec') {
-                updated.characteristics = newPage;
+    const updateCurrentPage = (newPage, chapter) => {
+        setChaptersRendered(prev => {
+            return {
+                ...prev,
+                [chapter]: {
+                    startPage: currentPage,
+                    rendered: true
+                }
             }
-
-            return updated;
         });
+        setCurrentPage(newPage);
+        console.log(chaptersRendered)
     };
 
     return (
@@ -46,29 +45,43 @@ const Print = ({ kpId, isPrint, type, info }) => {
             <TitleChapter
                 type={type}
                 titleInfo={info.titleInfo}
+                startPage={currentPage}
+                name={'title'}
+                email={email}
+                onRender={(pagesUsed, chapter) => updateCurrentPage(pagesUsed, chapter)}
             />
 
-            <ContentsChapter
-                pages={pages}
-                pageNum={pages.contents}
-                chapterNum={1}
-                subChapterNum={1.1}
-                changePage={(newPage) => updateChapterPage('contents', newPage)}
-            />
+            {chaptersRendered.title.rendered && (
+                <ContentsChapter
+                    startPage={currentPage}
+                    name={'contents'}
+                    chapterNum={1}
+                    subChapterNum={1.1}
+                    chaptersRendered={chaptersRendered}
+                    onRender={(pagesUsed, chapter) => updateCurrentPage(pagesUsed, chapter)}
+                />
+            )}
 
-            <SpecificationChapter
-                kpId={kpId}
-                pageNum={pages.spec}
-                chapterNum={1}
-                changePage={(newPage) => updateChapterPage('spec', newPage)}
-            />
+            {chaptersRendered.contents.rendered && (
+                <SpecificationChapter
+                    kpId={kpId}
+                    startPage={currentPage}
+                    name={'specification'}
+                    chapterNum={1}
+                    currency={currency}
+                    onRender={(pagesUsed, chapter) => updateCurrentPage(pagesUsed, chapter)}
+                />
+            )}
 
-            <CharacteristicsChapter
-                pageNum={pages.characteristics}
-                subChapterNum={1.1}
-                characteristicInfo={info.characteristicInfo}
-                changePage={(newPage) => updateChapterPage('characteristics', newPage)}
-            />
+            {chaptersRendered.specification.rendered && (
+                <CharacteristicsChapter
+                    startPage={currentPage}
+                    name={'characteristics'}
+                    subChapterNum={1.1}
+                    characteristicInfo={info.characteristicInfo}
+                    onRender={(pagesUsed, chapter) => updateCurrentPage(pagesUsed, chapter)}
+                />
+            )}
         </div>
     );
 }

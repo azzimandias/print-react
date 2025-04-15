@@ -1,5 +1,12 @@
+import {useEffect} from "react";
 
-const TitleChapter = ({ type, titleInfo }) => {
+const TitleChapter = ({ type, titleInfo, startPage, name, email, onRender }) => {
+
+    useEffect(() => {
+        console.log(1)
+        onRender(startPage++, name);
+    }, []);
+
     function formatDate(timestamp) {
         const date = new Date(timestamp * 1000); // Умножаем на 1000, чтобы преобразовать секунды в миллисекунды
         const day = String(date.getDate()).padStart(2, '0'); // Добавляем ведущий ноль
@@ -59,7 +66,7 @@ const TitleChapter = ({ type, titleInfo }) => {
                     <div className="start-block lil">
                         <p className="start-block-header">Контакты:</p>
                         <p id="tel_print" className="start-block-description">тел.: {titleInfo.manager.phone ? titleInfo.manager.phone : '-'}</p>
-                        <p id="mail_print" className="start-block-description">e-mail: {titleInfo.manager.email ? titleInfo.manager.email : '-'}</p>
+                        <p id="mail_print" className="start-block-description">e-mail: {titleInfo.manager.email ? titleInfo.manager.email : (email ? email : '-')}</p>
                         <p className="start-block-description">www.arstel.com</p>
                     </div>
                 </div>

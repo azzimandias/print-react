@@ -6,70 +6,10 @@
     "org_id": "50",
     "orguser_id": "253214",
     "user_id": "133",
-    "sellby": "",
-    "comment": "",
-    "deleted": "0",
-    "statuskp_id": "1",
-    "statusmoney_id": "0",
     "date": "1728375711",
-    "conveyance_id": "1",
     "address_id": "34584",
-    "phones_id": "69727",
-    "email_id": "0",
-    "requisites_id": "5",
-    "sturdy_packaging": "0",
-    "insurance": "0",
-    "filename": "",
-    "filename_euro": "",
-    "statusbid_id": "0",
-    "id8staff_list": "0",
-    "id8an_orgsusers": "0",
-    "id8an_statuskp": "0",
-    "protection_project": "0",
-    "emailorg_id": "0",
-    "numberbid": "",
-    "other_equipment": "",
-    "inrub": "0",
-    "percent": "0",
-    "textmodels": "33;34;1408",
-    "count_models": "3",
-    "date_update": "1744283194",
-    "place": "3",
-    "last_message_place": "",
     "rate_usd": "121.00",
     "rate_euro": "115.0000",
-    "consignee": "",
-    "bank_progress": "",
-    "last_view_user": "46",
-    "date_last_view": "1744284868",
-    "type_fixed": "1",
-    "concert_bid": "0",
-    "send1c": "0",
-    "guid_1C": "",
-    "comment_buh": "",
-    "comment_administratora": "",
-    "comment_engine1": "",
-    "comment_engine2": "",
-    "typeTitle": "13",
-    "woNDS": "0",
-    "is_rondo": "0",
-    "pdf_choice_text": "",
-    "pdf_scheme_img": "0",
-    "pdf_placing_img": "0",
-    "pdf_acoustic_text": "",
-    "pdf_reverb_img_name": "",
-    "pdf_reverb_img": "",
-    "pdf_reverb_text": "",
-    "pdf_direct_spl_text": "",
-    "pdf_total_spl_img_name": "",
-    "pdf_total_spl_img": "",
-    "pdf_total_spl_text": "",
-    "pdf_sti_text": "",
-    "pdf_alcons_text": "",
-    "pdf_conclusions_text": "",
-    "pdf_conclusions_recommendations_text": "",
-    "contact_name": " аывавы ",
-    "contact_occupy": "",
     "org_name": "Проектная фирма 'Темп'",
     "address": "Фактический адрес",
     "manager": {
@@ -77,32 +17,9 @@
       "surname": "Друговейко",
       "name": "Виктория",
       "secondname": "Юрьевна",
-      "id_occupy": "9",
       "occupy": "главный бухгалтер",
-      "id_departament": "3",
-      "rang": "30",
-      "id_user": null,
-      "id_komendant": "83",
-      "status": "0",
-      "passcard": "499349",
-      "passcard_blob": "1C01000000312485",
-      "username": "vdrugoveiko",
-      "password": "827ccb0eea8a706c4c34a16891f84e7b",
-      "id_role": "1",
-      "login_enabled": "no",
-      "email": null,
-      "qexit": "0",
-      "boss": "0",
-      "field": "0",
-      "tempid": "0",
-      "boss_id": "46",
-      "visible": "1",
       "phone": "111",
-      "sigur_user_id": "49",
-      "dismissal_date": "0",
-      "recruitment_date": "0",
-      "deleted": "0",
-      "no_uses_skud": "0",
+      "email": "",
       "id_company": "2"
     },
     "contactPerson": {
@@ -111,132 +28,6 @@
       "occupy": "Маршал победы"
     },
     "currency": 0
-  },
-  "specialsInfo": [],
-  "choiceInfo": {
-    "modifiedText": ""
-  },
-  "schemeInfo": [],
-  "schemesInfo": [
-    {
-      "id": "1",
-      "scheme_name": "Такая-то схема",
-      "scheme_img": "scheme.png"
-    },
-    {
-      "id": "2",
-      "scheme_name": "Другая схема",
-      "scheme_img": "another_scheme.png"
-    },
-    {
-      "id": "8",
-      "scheme_name": "Новое!!",
-      "scheme_img": "iMac 2021 Wallpaper 2.jpg"
-    },
-    {
-      "id": "9",
-      "scheme_name": "Новая схема",
-      "scheme_img": "iMac 2021 Wallpaper 3.jpg"
-    },
-    {
-      "id": "17",
-      "scheme_name": "new",
-      "scheme_img": "22af645d1859cb5ca6da0c484f1f37ea.jpg"
-    }
-  ],
-  "placingInfo": [],
-  "placingsInfo": [
-    {
-      "id": "1",
-      "placing_name": "Такое-то размещение",
-      "placing_img": "placing.png"
-    },
-    {
-      "id": "2",
-      "placing_name": "Другое размещение",
-      "placing_img": "another_placing.png"
-    },
-    {
-      "id": "3",
-      "placing_name": "Новок размещение",
-      "placing_img": "iMac 2021 Wallpaper 10.jpg"
-    },
-    {
-      "id": "4",
-      "placing_name": "newnew",
-      "placing_img": "e3b81d385ca4c26109dfbda28c563e2b.jpg"
-    }
-  ],
-  "recomendarionInfo": [],
-  "acousticInfo": {
-    "imgs": [],
-    "text": [
-      {
-        "pdf_acoustic_text": ""
-      }
-    ]
-  },
-  "directSplInfo": {
-    "imgs": [],
-    "text": [
-      {
-        "pdf_direct_spl_text": ""
-      }
-    ]
-  },
-  "stiInfo": {
-    "imgs": [],
-    "text": [
-      {
-        "pdf_sti_text": ""
-      }
-    ]
-  },
-  "alconsInfo": {
-    "imgs": [],
-    "text": [
-      {
-        "pdf_alcons_text": ""
-      }
-    ]
-  },
-  "reverbInfo": {
-    "img": [
-      {
-        "pdf_reverb_img_name": "",
-        "pdf_reverb_img": ""
-      }
-    ],
-    "text": [
-      {
-        "pdf_reverb_text": ""
-      }
-    ]
-  },
-  "totalSplInfo": {
-    "img": [
-      {
-        "pdf_total_spl_img_name": "",
-        "pdf_total_spl_img": ""
-      }
-    ],
-    "text": [
-      {
-        "pdf_total_spl_text": ""
-      }
-    ]
-  },
-  "conclusionsInfo": {
-    "conclusions": [
-      {
-        "pdf_conclusions_text": ""
-      }
-    ],
-    "conclusionsRecommendations": [
-      {
-        "pdf_conclusions_recommendations_text": ""
-      }
-    ]
   },
   "characteristicInfo": {
     "maxPowerConsumption": 280,

@@ -1,28 +1,22 @@
+import { Flex, Input, Radio, Button } from 'antd';
 import './App.css';
-import EditFields from "./modules/EditFields";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Print from "./modules/Print";
 
 function App() {
-    const [kpId, setKpId] = useState(92006);
-    const [type, setType] = useState(1);
+    const [kpId] = useState(92006);
+    const [type] = useState(1);
     const [isPrint, setIsPrint] = useState(false);
+    const [email, setEmail] = useState('');
+    const [currency, setCurrency] = useState({ label: '$', value: '1' });
 
-    const [titleInfo, setTitleInfo] = useState({manager: {}, contactPerson: {}});
-    const [specialsInfo, setSpecialsInfo] = useState({});
-    const [choiceInfo, setChoiceInfo] = useState({});
-    const [schemeInfo, setSchemeInfo] = useState({});
-    const [placingInfo, setPlacingInfo] = useState({});
-    const [schemesInfo, setSchemesInfo] = useState({});
-    const [placingsInfo, setPlacingsInfo] = useState({});
-    const [recomendationInfo, setRecommendationInfo] = useState({});
-    const [acousticInfo, setAcousticInfo] = useState({});
-    const [reverbInfo, setReverbInfo] = useState({});
-    const [directSplInfo, setDirectSplInfo] = useState({});
-    const [totalSplInfo, setTotalSplInfo] = useState({});
-    const [stiInfo, setStiInfo] = useState({});
-    const [alconsInfo, setAlconsInfo] = useState({});
-    const [conclusionsInfo, setConclusionsInfo] = useState({});
+    const options = [
+        { label: '$', value: '1' },
+        { label: '€', value: '2' },
+        { label: '₽', value: '3' },
+    ];
+
+    const [titleInfo, setTitleInfo] = useState({ manager: {}, contactPerson: {} });
     const [characteristicInfo, setCharacteristicInfo] = useState({});
 
     useEffect(() => {
@@ -31,26 +25,10 @@ function App() {
 
     const getInfoFromServer = () => {
         try {
-            //const response = await fetch(`http://zend2.arstel.su/kpischet/infoToPrint?bid_id=${kpId}`)
             fetch(`/test.json`)
                 .then(res => res.json())
                 .then(res => {
-                    console.log(res)
                     setTitleInfo(res.titleInfo);
-                    setSpecialsInfo(res.specialsInfo);
-                    setChoiceInfo(res.choiceInfo);
-                    setSchemeInfo(res.schemeInfo);
-                    setPlacingInfo(res.placingInfo);
-                    setSchemesInfo(res.schemesInfo);
-                    setPlacingsInfo(res.placingsInfo);
-                    setRecommendationInfo(res.recomendationInfo);
-                    setAcousticInfo(res.acousticInfo);
-                    setReverbInfo(res.reverbInfo);
-                    setDirectSplInfo(res.directSplInfo);
-                    setTotalSplInfo(res.totalSplInfo);
-                    setStiInfo(res.stiInfo);
-                    setAlconsInfo(res.alconsInfo);
-                    setConclusionsInfo(res.conclusionsInfo);
                     setCharacteristicInfo(res.characteristicInfo);
                 });
         } catch (e) {
@@ -58,46 +36,63 @@ function App() {
         }
     }
 
-    const startPrint = () => {
+    const handlePrint = () => {
         setIsPrint(true);
     }
 
-    const stopPrint = () => {
-        setIsPrint(false);
+    useEffect(() => {
+        if (isPrint) {
+            const timer = setTimeout(() => {
+                window.print();
+                setIsPrint(false);
+            }, 300);
+
+            return () => clearTimeout(timer);
+        }
+    }, [isPrint]);
+
+    const handleCurrencyChange = (e) => {
+        const selectedValue = e.target.value;
+        const selectedOption = options.find(opt => opt.value === selectedValue);
+        setCurrency(selectedOption || { label: '$', value: '1' });
     }
 
     return (
-      <div className="App">
-          <EditFields
-              startPrint={startPrint}
-              stopPrint={stopPrint}
-          />
-          <Print
-              kpId={kpId}
-              type={type}
-              isPrint={isPrint}
-              info={
-                  {
-                      titleInfo,
-                      specialsInfo,
-                      choiceInfo,
-                      schemeInfo,
-                      placingInfo,
-                      schemesInfo,
-                      placingsInfo,
-                      recomendationInfo,
-                      acousticInfo,
-                      reverbInfo,
-                      directSplInfo,
-                      totalSplInfo,
-                      stiInfo,
-                      alconsInfo,
-                      conclusionsInfo,
-                      characteristicInfo
-                  }
-              }
-          />
-      </div>
+        <div className="App">
+            <div className="edit-fields-wrapper">
+                <Flex gap="middle" vertical>
+                    <Input
+                        placeholder="Email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <Radio.Group
+                        block
+                        options={options}
+                        value={currency.value}
+                        onChange={handleCurrencyChange}
+                        optionType="button"
+                        buttonStyle="solid"
+                    />
+                    <Button type="primary" onClick={handlePrint}>
+                        Печать
+                    </Button>
+                </Flex>
+            </div>
+
+            {isPrint && (
+                <Print
+                    kpId={kpId}
+                    type={type}
+                    info={{
+                        titleInfo,
+                        characteristicInfo
+                    }}
+                    email={email}
+                    currency={currency}
+                />
+            )}
+        </div>
     );
 }
 
