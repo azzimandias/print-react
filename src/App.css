@@ -85,6 +85,9 @@ body {
   .edit-fields-wrapper {
     display: none;
   }
+  .full-screen-spin-container {
+    display: none !important;
+  }
   @page {
     size: A4 landscape;
     margin: 0;
@@ -387,7 +390,7 @@ body {
   position: relative;
 }
 .body-container {
-  outline: 6px solid #EBEBEB;
+  //outline: 6px solid #EBEBEB;
   background-color: white;
 }
 .hide-outline {
@@ -1024,4 +1027,17 @@ a { text-decoration: none; }
   font-size: 6mm;
   margin-right: 4mm;
   display: block;
+}
+
+.full-screen-spin-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(30, 31, 34);
+  z-index: 9999;
 }

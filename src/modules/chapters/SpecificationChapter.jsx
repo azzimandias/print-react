@@ -4,13 +4,17 @@ import PageFooter from "../PageFooter";
 const SpecificationChapter = ({ kpId, startPage, name, chapterNum, currency, onRender }) => {
     const [pageNumSelf, setPageNameSelf] = useState(startPage);
     const [models, setModels] = useState([]);
-
+    let rendered = false;
     useEffect(() => {
-        fetchModels();
+        if (!rendered) {
+            fetchModels();
+            rendered = true;
+        }
     }, []);
 
     useEffect(() => {
         if (models.length > 0) {
+            console.log(models.length)
             onRender(pageNumSelf + calculateBlocksCount(), name);
         }
     }, [models]);

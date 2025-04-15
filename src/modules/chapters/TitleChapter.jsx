@@ -1,9 +1,8 @@
 import {useEffect} from "react";
 
 const TitleChapter = ({ type, titleInfo, startPage, name, email, onRender }) => {
-
+    let rendered = false;
     useEffect(() => {
-        console.log(1)
         onRender(startPage++, name);
     }, []);
 

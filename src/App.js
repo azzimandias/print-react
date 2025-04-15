@@ -1,7 +1,8 @@
-import { Flex, Input, Radio, Button } from 'antd';
+import { Flex, Input, Radio, Button, Spin } from 'antd';
 import './App.css';
 import { useEffect, useState } from "react";
 import Print from "./modules/Print";
+import FullScreenSpin from "./modules/FullScreenSpin";
 
 function App() {
     const [kpId] = useState(92006);
@@ -92,6 +93,8 @@ function App() {
                     currency={currency}
                 />
             )}
+
+            {isPrint && <FullScreenSpin />}
         </div>
     );
 }

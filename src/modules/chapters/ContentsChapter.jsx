@@ -3,6 +3,7 @@ import PageFooter from "../PageFooter";
 
 const ContentsChapter = ({ startPage, name, chapterNum, subChapterNum, chaptersRendered, onRender}) => {
     const [pageNumSelf, setPageNameSelf] = useState(startPage);
+    let rendered = false;
     useEffect(() => {
         onRender(startPage++, name);
     }, []);
@@ -93,9 +94,10 @@ const ContentsChapter = ({ startPage, name, chapterNum, subChapterNum, chaptersR
                 </a>*/}
                 <a id="thirdChapterLink" href="#thirdChapter-0">
                     <div className="line">
-                        <p className="line-name"><span className="line-num">{chapterNum}</span>. Спецификация оборудования</p>
+                        <p className="line-name"><span className="line-num">{chapterNum}</span>. Спецификация
+                            оборудования</p>
                         <div className="dotted"></div>
-                        <p className="line-page">{chaptersRendered.specification.startPage < 10 ? '0' + chaptersRendered.specification.startPage: chaptersRendered.specification.startPage}</p>
+                        <p className="line-page">{chaptersRendered.specification.startPage < 10 ? '0' + chaptersRendered.specification.startPage : chaptersRendered.specification.startPage}</p>
                     </div>
                 </a>
                 {/*<a id="recommendationsChapterLink" href="#recommendations-1">

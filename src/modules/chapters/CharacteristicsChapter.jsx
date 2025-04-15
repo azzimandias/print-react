@@ -3,9 +3,9 @@ import {useEffect, useState} from "react";
 
 const CharacteristicsChapter = ({ startPage, subChapterNum, characteristicInfo, name, onRender }) => {
     const [pageNumSelf, setPageNameSelf] = useState(startPage);
+    let rendered = false;
     useEffect(() => {
         onRender(startPage++, name);
-        console.log(111)
     }, []);
     return (
         <div className="body-container specification">
